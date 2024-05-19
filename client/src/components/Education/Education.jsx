@@ -1,11 +1,8 @@
-import React from 'react'
+import React from "react";
+import Main from "../../SustainableLife/Main";
 
 const Education = () => {
-  return (
-    <div>
-      Education
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default Education
+export default Education;
