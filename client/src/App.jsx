@@ -13,6 +13,7 @@ import Detail from "./SustainableLife/Details/Detail";
 import Community from './views/Community'
 import Event from './views/Event'
 import AddEvent from './views/AddEvent'
+import ProfilePage from "./Profile/ProfilePage";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
               <Route path='/community' element={<Community />} />
               <Route path='/add-event' element={<AddEvent />} />
               <Route path='/community/:eventId' element={<Event />} />
+              <Route path= "profile" element={<ProfilePage />} />
             </Route>
             <Route exact path="/" element={<Home />} />
             <Route path="/education" element={<Education />} />

@@ -1,14 +1,15 @@
-import mongoose from 'mongoose'
-const userScheme = mongoose.Schema({
+import mongoose from "mongoose";
+const userScheme = mongoose.Schema(
+  {
     fName: String,
     lName: String,
     email: {
-        type: String,
-        unique: true
+      type: String,
+      unique: true,
     },
-    userName:{
-        type: String,
-        unique: true
+    userName: {
+      type: String,
+      unique: true,
     },
     password: String,
     dateOfBirth: String,
@@ -18,30 +19,24 @@ const userScheme = mongoose.Schema({
     profileImage: String,
     country: String,
     city: String,
-    cover: String,
     followers: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
-        }
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
     ],
     following: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
-        }
-    ],
-    blockedUsers: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
-        }
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
     ],
     interests: [String],
-}, {
-    timestamps: true
-}
-)
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const User = mongoose.model('User', userScheme);
+const User = mongoose.model("User", userScheme);
 export default User;
