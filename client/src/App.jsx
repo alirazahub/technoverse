@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import PrivateRoutes from './auth/PrivateRoutes'
 import ScrollToTop from './utils/ScrollToTop'
 import Dashboard from './views/Dashboard'
+import Education from './components/Education/Education'
+import Home from './components/Home/Home'
 
 const App = () => {
   return (
@@ -17,7 +19,9 @@ const App = () => {
             <Route element={<PrivateRoutes />}>
               <Route path='/dashboard' element={<Dashboard />} />
             </Route>
-            <Route path='/' element={<Login />} />
+            <Route exact path='/' element={<Home />} />
+            <Route path='/education' element={<Education />} />
+            <Route path='/login' element={<Login />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
           </Routes>
