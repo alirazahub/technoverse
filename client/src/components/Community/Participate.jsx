@@ -1,14 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ParticipateCard from './ParticipateCard'
 import { events } from './data'
 import { IoSearch } from 'react-icons/io5'
-import { useNavigate } from 'react-router-dom'
+import { useFetch } from '../../hooks/useHooks'
+import server from '../../utils/server'
 
 
 function Participate() {
     const [query, setQuery] = useState('')
-    const navigation = useNavigate()
-    const [filteredEvents, setfilteredEvents] = useState(events)
+    // const { data: events, loading, error } = useFetch(`${server}/api/user/get-all-events`)
+    const [events, setEvents] = useState([])
+    const [filteredEvents, setfilteredEvents] = useState([])
+
+
+    const getAllEvents = async () => {
+        try {
+            const response = await fetch(`${server}/api/user/get-all-events`)
+            const data = await response.json()
+            console.log(data?.events)
+            return data?.events
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    useEffect(() => {
+        getAllEvents().then((data) => {
+            setEvents(data)
+            setfilteredEvents(data)
+        })
+    }, [])
 
     const handleSearch = (e) => {
         e.preventDefault()
@@ -19,7 +40,13 @@ function Participate() {
         console.log(filteredEvents)
     }
 
+    // if (loading) {
+    //     return <p>Loading...</p>
+    // }
 
+    // if (error) {
+    //     return <p>{error}</p>
+    // }
 
     return (
         <div>
@@ -32,8 +59,8 @@ function Participate() {
                     </label>
                 </form>
             </div>
-            {
-                filteredEvents.map((event) => {
+            {events &&
+                filteredEvents?.map((event) => {
                     return (
                         <div key={event.id}>
                             <ParticipateCard event={event} />
