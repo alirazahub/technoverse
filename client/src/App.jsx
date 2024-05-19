@@ -10,11 +10,11 @@ import EducationalHub from "./components/EducationalHub/EducationalHub";
 import Home from "./components/Home/Home";
 import Life from "./components/Life/Life";
 import Detail from "./SustainableLife/Details/Detail";
-import Community from './views/Community'
-import Event from './views/Event'
-import AddEvent from './views/AddEvent'
+import Community from "./views/Community";
+import Event from "./views/Event";
+import AddEvent from "./views/AddEvent";
 import ProfilePage from "./Profile/ProfilePage";
-import ArticleDetails from './components/EducationalHub/ArticleDetails'
+import ArticleDetails from "./components/EducationalHub/ArticleDetails";
 
 const App = () => {
   return (
@@ -25,14 +25,15 @@ const App = () => {
           <Routes>
             <Route element={<PrivateRoutes />}>
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path='/community' element={<Community />} />
-              <Route path='/add-event' element={<AddEvent />} />
-              <Route path='/community/:eventId' element={<Event />} />
-              <Route path= "profile" element={<ProfilePage />} />
+              <Route path="/community" element={<Community />} />
+              <Route path="/add-event" element={<AddEvent />} />
+              <Route path="/community/:eventId" element={<Event />} />
+              <Route path="profile" element={<ProfilePage />} />
+              <Route path="followers" element={<ProfilePage />} />
             </Route>
             <Route exact path="/" element={<Home />} />
             <Route path="/educational-hub" element={<EducationalHub />} />
-            <Route path='/article-details/:id' element={<ArticleDetails />} />
+            <Route path="/article-details/:id" element={<ArticleDetails />} />
             <Route path="/life" element={<Life />} />
             <Route path="/life/:id" element={<Detail />} />
             <Route path="/login" element={<Login />} />

@@ -60,13 +60,19 @@ const UserDropdown = () => {
             </button>
           </Link>
 
-          <div className="mt-2">
+          <div className="mt-2 flex flex-col">
             <h3 className="font-bold">Manage</h3>
             <Link
-              href={"/profile"}
+              to={"/followers"}
               className="text-gray-500 text-sm my-1 hover:underline"
             >
-              Posts
+              Followers
+            </Link>
+            <Link
+              to={"/following"}
+              className="text-gray-500 text-sm my-1 hover:underline"
+            >
+              Following
             </Link>
           </div>
 

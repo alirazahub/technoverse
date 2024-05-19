@@ -86,12 +86,42 @@ export const updateProfile = asyncHandler(async (req, res) => {
   }
 });
 
-export const followUser = asyncHandler(async (req, res) => {
+//who to follow, check the interests of the user and suggest users with similar interests, if now interest suggest random users
+
+export const whoToFollow = asyncHandler(async (req, res) => {
   try {
-    const { targetUserId } = req.params;
+    const user = await User.findById(req.user.id);
+
+    if (!user.interests || user.interests.length === 0) {
+      const users = await User.find({ _id: { $ne: user._id } }).select(
+        "-password"
+      );
+      return res.status(200).json({ users, success: true });
+    }
+
+    // Get users with similar interests and not already followed
+    const followersIds = user.followers.map((follower) => follower.toString());
+    const users = await User.find({
+      userName: { $ne: user.userName },
+      interests: { $in: user.interests },
+      _id: { $nin: followersIds },
+    }).select("-password");
+
+    res.status(200).json({ users, success: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message, success: false });
+  }
+});
+
+export const followUser = asyncHandler(async (req, res) => {
+  console.log("following");
+  try {
+    const { id } = req.params;
 
     const user = await User.findById(req.user.id);
-    const targetUser = await User.findById(targetUserId);
+    const targetUser = await User.findById(id);
+    console.log(user, targetUser);
 
     if (!user || !targetUser) {
       return res
@@ -99,13 +129,13 @@ export const followUser = asyncHandler(async (req, res) => {
         .json({ message: "User not found", success: false });
     }
 
-    if (user.following.includes(targetUserId)) {
+    if (user.following.includes(id)) {
       return res
         .status(400)
         .json({ message: "Already following", success: false });
     }
 
-    await user.updateOne({ $push: { following: targetUserId } });
+    await user.updateOne({ $push: { following: id } });
     await targetUser.updateOne({ $push: { followers: req.user.id } });
 
     res.status(200).json({ message: "Followed successfully", success: true });
@@ -180,6 +210,8 @@ export const changeProfileImage = asyncHandler(async (req, res) => {
     });
   } catch (error) {}
 });
+
+
 export const getUserById = asyncHandler(async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
