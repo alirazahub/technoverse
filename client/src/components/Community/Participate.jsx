@@ -28,7 +28,7 @@ function Participate() {
                 <form onSubmit={handleSearch}>
                     <label className='mx-3 bg-gray-100 flex items-center py-2 px-5 rounded-full outline'>
                         <IoSearch className='text-gray-600 text-2xl' />
-                        <input onChange={(e) => setQuery(e.target.value)} placeholder='Search' className='px-2 text-[14px] bg-gray-100 outline-none border-none' type="text" />
+                        <input onChange={(e) => setQuery(e.target.value)} placeholder='Search' className='px-2 text-[14px] bg-gray-100 outline-none border-none w-full' type="text" />
                     </label>
                 </form>
             </div>

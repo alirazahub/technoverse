@@ -10,6 +10,7 @@ import Education from './components/Education/Education'
 import Home from './components/Home/Home'
 import Community from './views/Community'
 import Event from './views/Event'
+import AddEvent from './views/AddEvent'
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route element={<PrivateRoutes />}>
               <Route path='/dashboard' element={<Dashboard />} />
               <Route path='/community' element={<Community />} />
+              <Route path='/add-event' element={<AddEvent />} />
               <Route path='/community/:eventId' element={<Event />} />
             </Route>
             <Route exact path='/' element={<Home />} />
