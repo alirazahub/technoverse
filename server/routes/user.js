@@ -1,6 +1,6 @@
 import express, { Router } from "express";
 import {
-    login, registerUser, profile, getUserById, changeProfileImage, addEvent, joinEvent, getAllEvents, getEventById, updateProfile
+    login, registerUser, profile, getUserById, changeProfileImage, addEvent, joinEvent, getAllEvents, getEventById, updateProfile,
   whoToFollow,
   followUser,
 } from "../controllers/user.js";
