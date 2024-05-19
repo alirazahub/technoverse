@@ -60,7 +60,7 @@ function Navbar() {
             {/* <Link title='Home' to='/dashboard' className='mx-3'>
                             <IoMdHome className='text-3xl text-gray-600 hover:text-blue-500 transition-all cursor-pointer' />
                         </Link> */}
-            <Link to="/education" className="mx-3 hover:text-blue-500">
+            <Link to="/educational-hub" className="mx-3 hover:text-blue-500">
               <div className="flex items-center gap-2">
                 {/* <FaHome className='text-3xl text-gray-600' /> */}
                 Education Hub
@@ -74,7 +74,7 @@ function Navbar() {
               {/* <FaPlus className='text-3xl text-gray-600 hover:text-blue-500 transition-all cursor-pointer' /> */}
               Living Guide
             </Link>
-            <Link to="/educational-hub" className="mx-3">
+            <Link to="/community" className="mx-3">
               <div className="flex items-center gap-2">
                 {/* <MdCastForEducation className='text-3xl text-gray-600' /> */}
                 Community
