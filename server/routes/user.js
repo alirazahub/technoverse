@@ -1,6 +1,6 @@
 import express from "express";
 import {
-    login, registerUser, profile, getUserById, changePassword, changeProfileImage, addEvent, joinEvent, getAllEvents, getEventById, updateProfile
+    login, registerUser, profile, getUserById, changeProfileImage, addEvent, joinEvent, getAllEvents, getEventById, updateProfile
 } from "../controllers/user.js";
 import { verifyUser } from "../middleware/verifyUser.js";
 
