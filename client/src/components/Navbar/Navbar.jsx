@@ -63,19 +63,20 @@ function Navbar() {
                         {/* <Link title='Home' to='/dashboard' className='mx-3'>
                             <IoMdHome className='text-3xl text-gray-600 hover:text-blue-500 transition-all cursor-pointer' />
                         </Link> */}
-                        <Link to='/education' className='mx-3 hover:text-blue-500'>
-                            <div className='flex items-center gap-2'>
-                                {/* <FaHome className='text-3xl text-gray-600' /> */}
-                                Education Hub
-                            </div>
-                        </Link>
-                        <Link title='Create Post' to='/dashboard' className='mx-3 hover:text-blue-500'>
-                            {/* <FaPlus className='text-3xl text-gray-600 hover:text-blue-500 transition-all cursor-pointer' /> */}
-                            Living Guide
-                        </Link>
                         <Link to='/educational-hub' className='mx-3'>
                             <div className='flex items-center gap-2'>
                                 {/* <MdCastForEducation className='text-3xl text-gray-600' /> */}
+
+                                Education Hub
+                            </div>
+                        </Link>
+                        <Link title='Create Post' to='/live-guide' className='mx-3 hover:text-blue-500'>
+                            {/* <FaPlus className='text-3xl text-gray-600 hover:text-blue-500 transition-all cursor-pointer' /> */}
+                            Living Guide
+                        </Link>
+                        <Link to='/community' className='mx-3 hover:text-blue-500'>
+                            <div className='flex items-center gap-2'>
+                                {/* <FaHome className='text-3xl text-gray-600' /> */}
                                 Community
                             </div>
                         </Link>
@@ -86,13 +87,18 @@ function Navbar() {
                         <div className='flex justify-center items-center'>
                             <Link to='/' className='mx-3'>
                                 <div className='flex items-center gap-2'>
-                                    <FaHome className='text-3xl text-gray-600' />
+                                    <Link to='/educational-hub' className='mx-3'>
+                                        <div className='flex items-center gap-2'>
+                                            {/* <MdCastForEducation className='text-3xl text-gray-600' /> */}
+
+                                            Education Hub
+                                        </div>
+                                    </Link>
                                 </div>
                             </Link>
-                            <Link to='/educational-hub' className='mx-3'>
-                                <div className='flex items-center gap-2'>
-                                    <MdCastForEducation className='text-3xl text-gray-600' />
-                                </div>
+                            <Link title='Create Post' to='/live-guide' className='mx-3 hover:text-blue-500'>
+                                {/* <FaPlus className='text-3xl text-gray-600 hover:text-blue-500 transition-all cursor-pointer' /> */}
+                                Living Guide
                             </Link>
                         </div>
                     </div>

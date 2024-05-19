@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Introduction from "./Introduction/Introduction";
 import { useContext } from "react";
 import { LifeContext } from "./LifeContext/Context";
+import WeatherbitWeather from "../components/Weather";
 
 const Main = () => {
   const sections = useContext(LifeContext);
@@ -11,7 +12,7 @@ const Main = () => {
   return (
     <div className="p-6">
       <Introduction />
-
+      <WeatherbitWeather />
       {sections.map((section, index) => (
         <div
           key={section.id}
@@ -30,7 +31,7 @@ const Main = () => {
             </h2>
             <p className="text-lg text-gray-700 mb-4">{section.description}</p>
             <Link
-              to={`/life/${section.id}`}
+              to={`/live-guide/${section.id}`}
               state={{ section }}
               className="text-blue-500 mt-2 inline-block"
             >

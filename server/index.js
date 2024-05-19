@@ -8,6 +8,7 @@ import multer from 'multer';
 import fs from 'fs'
 import user from './routes/user.js'
 import NewsAPI from 'newsapi'
+import axios from 'axios'
 
 const newsapi = new NewsAPI('6d959f6b74fc4f8bb520e05579db0fd2');
 
@@ -161,6 +162,79 @@ app.get('/api/news/title/:title', async (req, res) => {
   }
 }
 );
+
+
+
+
+
+
+// OpenAQ API - Get air quality data
+app.get('/api/openaq', async (req, res) => {
+  try {
+    const { lat, lon, radius = 10000 } = req.query; // Default radius set to 10,000 meters
+    if (!lat || !lon) {
+      return res.status(400).json({ error: 'Latitude and longitude are required' });
+    }
+    console.log(`Fetching air quality data for coordinates: ${lat}, ${lon} with radius: ${radius}`);
+    const response = await axios.get(`https://api.openaq.org/v3/locations`, {
+      params: {
+        coordinates: `${lat},${lon}`,
+        radius,
+        limit: 1,
+      },
+    });
+    console.log('Response from OpenAQ API:', response.data);
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching air quality data:', error.response ? error.response.data : error.message);
+    res.status(500).json({ error: 'Error fetching air quality data' });
+  }
+});
+
+// Weatherbit API - Get current weather data
+app.get('/api/weatherbit', async (req, res) => {
+  try {
+    const { lat, lon } = req.query;
+    const response = await axios.get(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${process.env.WEATHERBIT_API_KEY}`);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// OpenWeatherMap API - Get current weather data
+app.get('/api/openweathermap', async (req, res) => {
+  try {
+    const { lat, lon } = req.query;
+    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.OPEN_WEATHER_API_KEY}`);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// NOAA API - Get historical climate data
+app.get('/api/noaa', async (req, res) => {
+  try {
+    const { locationid, startdate, enddate } = req.query;
+    const response = await axios.get(`https://www.ncdc.noaa.gov/cdo-web/api/v2/data`, {
+      params: {
+        datasetid: 'GHCND',
+        locationid,
+        startdate,
+        enddate,
+        units: 'standard',
+        limit: 10,
+      },
+      headers: {
+        token:process.env.NOAA_API_KEY
+      }
+    });
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, console.log(`Server is running on port ${PORT}`))

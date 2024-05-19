@@ -28,11 +28,11 @@ const App = () => {
               <Route path='/add-event' element={<AddEvent />} />
               <Route path='/community/:eventId' element={<Event />} />
             </Route>
-            <Route exact path="/" element={<Home />} />
+            <Route exact path="/" element={<EducationalHub />} />
             <Route path="/educational-hub" element={<EducationalHub />} />
             <Route path='/article-details/:id' element={<ArticleDetails />} />
-            <Route path="/life" element={<Life />} />
-            <Route path="/life/:id" element={<Detail />} />
+            <Route path="/live-guide" element={<Life />} />
+            <Route path="/live-guide/:id" element={<Detail />} />
             <Route path="/login" element={<Login />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
