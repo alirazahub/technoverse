@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoutes from "./auth/PrivateRoutes";
 import ScrollToTop from "./utils/ScrollToTop";
 import Dashboard from "./views/Dashboard";
-import Education from "./components/Education/Education";
+import EducationalHub from "./components/EducationalHub/EducationalHub";
 import Home from "./components/Home/Home";
 import Life from "./components/Life/Life";
 import Detail from "./SustainableLife/Details/Detail";
@@ -14,6 +14,7 @@ import Community from './views/Community'
 import Event from './views/Event'
 import AddEvent from './views/AddEvent'
 import ProfilePage from "./Profile/ProfilePage";
+import ArticleDetails from './components/EducationalHub/ArticleDetails'
 
 const App = () => {
   return (
@@ -30,7 +31,8 @@ const App = () => {
               <Route path= "profile" element={<ProfilePage />} />
             </Route>
             <Route exact path="/" element={<Home />} />
-            <Route path="/education" element={<Education />} />
+            <Route path="/educational-hub" element={<EducationalHub />} />
+            <Route path='/article-details/:id' element={<ArticleDetails />} />
             <Route path="/life" element={<Life />} />
             <Route path="/life/:id" element={<Detail />} />
             <Route path="/login" element={<Login />} />
