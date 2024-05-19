@@ -6,7 +6,7 @@ const userScheme = mongoose.Schema({
         type: String,
         unique: true
     },
-    userName:{
+    userName: {
         type: String,
         unique: true
     },
@@ -38,6 +38,18 @@ const userScheme = mongoose.Schema({
         }
     ],
     interests: [String],
+    events: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Event'
+        }
+    ],
+    volunteering: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Event'
+        }
+    ],
 }, {
     timestamps: true
 }

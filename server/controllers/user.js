@@ -2,6 +2,7 @@ import asyncHandler from 'express-async-handler'
 import jwt from 'jsonwebtoken'
 import User from '../models/userModel.js';
 import bcrypt from 'bcryptjs'
+import Event from '../models/eventModel.js';
 
 
 export const login = asyncHandler(async (req, res) => {
@@ -44,7 +45,7 @@ export const registerUser = asyncHandler(async (req, res) => {
                 gender,
                 email,
                 phone,
-                profileImage:'default-user.jpg',
+                profileImage: 'default-user.jpg',
                 userName: email.split('@')[0],
                 password: hashedPassword
             })
@@ -301,7 +302,7 @@ export const suggestUsers = asyncHandler(async (req, res) => {
         const users = await User.find({
             userName: { $ne: currentUser.userName },
             interests: { $in: currentUser.interests },
-            _id: { $nin: followersIds }, 
+            _id: { $nin: followersIds },
         }).select('-password').limit(5);
 
         res.status(200).json({ users, success: true });
@@ -323,6 +324,115 @@ export const searchUsers = asyncHandler(async (req, res) => {
         }).select('-password');
 
         res.status(200).json({ users, success: true });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error, success: false });
+    }
+});
+
+export const addEvent = asyncHandler(async (req, res) => {
+    try {
+        const {
+            eventName,
+            eventDescription,
+            eventDetails,
+            eventDate,
+            eventTags,
+            helping,
+            eventPoster
+        } = req.body;
+
+        // Create a new Event document
+        const newEvent = new Event({
+            eventName,
+            eventDescription,
+            eventDetails,
+            eventDate,
+            eventTags,
+            helping,
+            eventPoster,
+        });
+
+        // Save the Event document
+        const savedEvent = await newEvent.save();
+
+        // Find the user by ID
+        const user = await User.findById(req.user.id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found', success: false });
+        }
+
+        // Initialize the events array if it doesn't exist
+        if (!user.events) {
+            user.events = [];
+        }
+
+        // Add the event reference to the user's events array
+        user.events.push(savedEvent._id);
+
+        // Save the updated user document
+        await user.save();
+
+        res.status(200).json({ message: 'Event added successfully', user, success: true });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error', success: false });
+    }
+});
+
+export const joinEvent = asyncHandler(async (req, res) => {
+    try {
+        const { eventId } = req.params;
+        const user = await User.findById(req.user.id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found', success: false });
+        }
+
+        if (!user.volunteering) {
+            user.volunteering = [];
+        }
+
+        user.volunteering.push(eventId);
+        await user.save();
+        res.status(200).json({ message: 'Event joined successfully', user, success: true });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error });
+    }
+});
+
+
+export const getAllEvents = asyncHandler(async (req, res) => {
+    try {
+        // Find all users
+        const users = await User.find();
+
+        // Initialize an array to store all events
+        let events = [];
+
+        // Iterate through each user and populate their events
+        for (const user of users) {
+            if (user.events && user.events.length > 0) {
+                // Populate events for the current user
+                const populatedEvents = await Event.find({ _id: { $in: user.events } });
+                events.push(...populatedEvents);
+            }
+        }
+
+        // Return all events
+        res.status(200).json({ events, success: true });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error, success: false });
+    }
+});
+
+export const getEventById = asyncHandler(async (req, res) => {
+    try {
+        const event = await Event.findById(req.params.id);
+        res.status(200).json({ event, success: true });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error, success: false });
