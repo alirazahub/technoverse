@@ -50,31 +50,37 @@ function Navbar() {
                             <div className='text-gray-600'>EcoEmpower</div>
                         </h2>
                     </Link>
-                    <form onSubmit={handleSearch}>
+                    {/* <form onSubmit={handleSearch}>
                         <label className='mx-3 bg-gray-100 flex items-center py-2 px-5 rounded-full'>
                             <IoSearch className='text-gray-600 text-2xl' />
                             <input onChange={(e) => setQuery(e.target.value)} placeholder='Search' className='px-2 text-[14px] bg-gray-100 outline-none border-none' type="text" />
                         </label>
-                    </form>
+                    </form> */}
                 </div>
 
                 {user ?
-                    <div className='flex justify-center items-center gap-10'>
+                    <div className='flex justify-center items-center gap-1 font-light'>
                         {/* <Link title='Home' to='/dashboard' className='mx-3'>
                             <IoMdHome className='text-3xl text-gray-600 hover:text-blue-500 transition-all cursor-pointer' />
                         </Link> */}
-                        <Link to='/' className='mx-3'>
+                        <Link to='/education' className='mx-3 hover:text-blue-500'>
                             <div className='flex items-center gap-2'>
-                                <FaHome className='text-3xl text-gray-600' />
+                                {/* <FaHome className='text-3xl text-gray-600' /> */}
+                                Education Hub
                             </div>
                         </Link>
-                        <Link title='Create Post' to='/dashboard' className='mx-3'>
-                            <FaPlus className='text-3xl text-gray-600 hover:text-blue-500 transition-all cursor-pointer' />
+                        <Link title='Create Post' to='/dashboard' className='mx-3 hover:text-blue-500'>
+                            {/* <FaPlus className='text-3xl text-gray-600 hover:text-blue-500 transition-all cursor-pointer' /> */}
+                            Living Guide
                         </Link>
                         <Link to='/educational-hub' className='mx-3'>
                             <div className='flex items-center gap-2'>
-                                <MdCastForEducation className='text-3xl text-gray-600' />
+                                {/* <MdCastForEducation className='text-3xl text-gray-600' /> */}
+                                Community
                             </div>
+                        </Link>
+                        <Link title='Create Post' to='/add-event' className='mx-3 hover:text-blue-500'>
+                            <FaPlus className='text-3xl text-gray-600 hover:text-blue-500 transition-all cursor-pointer' />
                         </Link>
                     </div> : <div className='flex justify-center items-center gap-10'>
                         <div className='flex justify-center items-center'>
@@ -89,7 +95,8 @@ function Navbar() {
                                 </div>
                             </Link>
                         </div>
-                    </div>}
+                    </div>
+                }
                 <div className='flex justify-center items-center'>
                     {user ? <UserDropdown data={data} /> : <Link to='/login'> <button className='bg-blue-500 text-white px-5 py-2 rounded-md font-bold'>Sign In</button></Link>}
 
