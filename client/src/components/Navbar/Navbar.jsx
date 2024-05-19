@@ -71,7 +71,7 @@ function Navbar() {
                         <Link title='Create Post' to='/dashboard' className='mx-3'>
                             <FaPlus className='text-3xl text-gray-600 hover:text-blue-500 transition-all cursor-pointer' />
                         </Link>
-                        <Link to='/education' className='mx-3'>
+                        <Link to='/educational-hub' className='mx-3'>
                             <div className='flex items-center gap-2'>
                                 <MdCastForEducation className='text-3xl text-gray-600' />
                             </div>
@@ -83,7 +83,7 @@ function Navbar() {
                                     <FaHome className='text-3xl text-gray-600' />
                                 </div>
                             </Link>
-                            <Link to='/education' className='mx-3'>
+                            <Link to='/educational-hub' className='mx-3'>
                                 <div className='flex items-center gap-2'>
                                     <MdCastForEducation className='text-3xl text-gray-600' />
                                 </div>
