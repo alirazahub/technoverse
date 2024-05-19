@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import PrivateRoutes from './auth/PrivateRoutes'
 import ScrollToTop from './utils/ScrollToTop'
 import Dashboard from './views/Dashboard'
+import Community from './views/Community'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Routes>
             <Route element={<PrivateRoutes />}>
               <Route path='/dashboard' element={<Dashboard />} />
+              <Route path='/community' element={<Community />} />
             </Route>
             <Route path='/' element={<Login />} />
             <Route path='/login' element={<Login />} />
