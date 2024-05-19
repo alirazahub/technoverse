@@ -9,6 +9,8 @@ import { IoSearch } from "react-icons/io5";
 import MobileNavbar from './MobileNavbar';
 import { useNavigate, Link } from 'react-router-dom';
 import { useVerifyUser } from '../../hooks/useHooks';
+import { FaHome } from 'react-icons/fa';
+import { MdCastForEducation } from "react-icons/md";
 
 
 function Navbar() {
@@ -43,12 +45,9 @@ function Navbar() {
             {/* desktop navbar */}
             <div className='hidden lg:grid grid-cols-3 h-full'>
                 <div className='flex justify-start items-center mx-5'>
-                    <Link to='/dashboard'>
+                    <Link to='/'>
                         <h2 className='text-2xl font-bold flex items-center'>
-                            <div className='text-gray-600'>PUC</div>
-                            <div className='bg-blue-500 text-white rounded-md p-1 flex items-center'>
-                                <LuLinkedin />
-                            </div>
+                            <div className='text-gray-600'>EcoEmpower</div>
                         </h2>
                     </Link>
                     <form onSubmit={handleSearch}>
@@ -58,15 +57,39 @@ function Navbar() {
                         </label>
                     </form>
                 </div>
+
                 {user ?
                     <div className='flex justify-center items-center gap-10'>
-                        <Link title='Home' to='/dashboard' className='mx-3'>
+                        {/* <Link title='Home' to='/dashboard' className='mx-3'>
                             <IoMdHome className='text-3xl text-gray-600 hover:text-blue-500 transition-all cursor-pointer' />
+                        </Link> */}
+                        <Link to='/' className='mx-3'>
+                            <div className='flex items-center gap-2'>
+                                <FaHome className='text-3xl text-gray-600' />
+                            </div>
                         </Link>
                         <Link title='Create Post' to='/dashboard' className='mx-3'>
                             <FaPlus className='text-3xl text-gray-600 hover:text-blue-500 transition-all cursor-pointer' />
                         </Link>
-                    </div> : <div className='flex justify-center items-center gap-10'></div>}
+                        <Link to='/education' className='mx-3'>
+                            <div className='flex items-center gap-2'>
+                                <MdCastForEducation className='text-3xl text-gray-600' />
+                            </div>
+                        </Link>
+                    </div> : <div className='flex justify-center items-center gap-10'>
+                        <div className='flex justify-center items-center'>
+                            <Link to='/' className='mx-3'>
+                                <div className='flex items-center gap-2'>
+                                    <FaHome className='text-3xl text-gray-600' />
+                                </div>
+                            </Link>
+                            <Link to='/education' className='mx-3'>
+                                <div className='flex items-center gap-2'>
+                                    <MdCastForEducation className='text-3xl text-gray-600' />
+                                </div>
+                            </Link>
+                        </div>
+                    </div>}
                 <div className='flex justify-center items-center'>
                     {user ? <UserDropdown data={data} /> : <Link to='/login'> <button className='bg-blue-500 text-white px-5 py-2 rounded-md font-bold'>Sign In</button></Link>}
 
