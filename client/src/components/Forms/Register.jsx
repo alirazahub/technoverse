@@ -6,7 +6,8 @@ import {
     Select,
     Input,
     DatePicker,
-    notification
+    notification,
+    Row, Col
 } from 'antd';
 import server from '../../utils/server';
 import { useNavigate, Link } from 'react-router-dom';
@@ -49,143 +50,159 @@ const App = () => {
             name="register"
             onFinish={onFinish}
             style={{
-                maxWidth: 300,
+                maxWidth: 600,
             }}
             scrollToFirstError
         >
-            <Form.Item
-                label="First Name"
-                name="fName"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your first name!',
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
+            <Row gutter={16}>
+                <Col span={12}>
+                    <Form.Item
+                        label="First Name"
+                        name="fName"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your first name!',
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                </Col>
+                <Col span={12}>
+                    <Form.Item
+                        label="Last Name"
+                        name="lName"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your last name!',
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                </Col>
+            </Row>
 
-            <Form.Item
-                label="Last Name"
-                name="lName"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your first name!',
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
+            <Row gutter={16}>
+                <Col span={12}>
+                    <Form.Item
+                        label="Date of Birth"
+                        name="dateOfBirth"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your date of birth!',
+                            },
+                        ]}
+                    >
+                        <DatePicker className='w-[100%]' />
+                    </Form.Item>
+                </Col>
+                <Col span={12}>
+                    <Form.Item
+                        name="gender"
+                        label="Gender"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please select your gender!',
+                            },
+                        ]}
+                    >
+                        <Select placeholder="Select your gender">
+                            <Option value="male">Male</Option>
+                            <Option value="female">Female</Option>
+                            <Option value="other">Other</Option>
+                        </Select>
+                    </Form.Item>
+                </Col>
+            </Row>
 
-            <Form.Item
-                label="Date of Birth"
-                name="dateOfBirth"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input!',
-                    },
-                ]}
-            >
-                <DatePicker className='w-[100%]' />
-            </Form.Item>
+            <Row gutter={16}>
+                <Col span={12}>
+                    <Form.Item
+                        name="email"
+                        label="E-mail"
+                        rules={[
+                            {
+                                type: 'email',
+                                message: 'The input is not valid E-mail!',
+                            },
+                            {
+                                required: true,
+                                message: 'Please input your E-mail!',
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                </Col>
+                <Col span={12}>
+                    <Form.Item
+                        name="phone"
+                        label="Phone Number"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your phone number!',
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                </Col>
+            </Row>
 
-            <Form.Item
-                name="gender"
-                label="Gender"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please select gender!',
-                    },
-                ]}
-            >
-                <Select placeholder="select your gender">
-                    <Option value="male">Male</Option>
-                    <Option value="female">Female</Option>
-                    <Option value="other">Other</Option>
-                </Select>
-            </Form.Item>
-
-            <Form.Item
-                name="email"
-                label="E-mail"
-                rules={[
-                    {
-                        type: 'email',
-                        message: 'The input is not valid E-mail!',
-                    },
-                    {
-                        required: true,
-                        message: 'Please input your E-mail!',
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-
-            <Form.Item
-                name="phone"
-                label="Phone Number"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your phone number!',
-                    },
-                ]}
-            >
-                <Input
-                    style={{
-                        width: '100%',
-                    }}
-                />
-            </Form.Item>
-
-            <Form.Item
-                name="password"
-                label="Password"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your password!',
-                    },
-                ]}
-                hasFeedback
-            >
-                <Input.Password />
-            </Form.Item>
-
-            <Form.Item
-                name="confirm"
-                label="Confirm Password"
-                dependencies={['password']}
-                hasFeedback
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please confirm your password!',
-                    },
-                    ({ getFieldValue }) => ({
-                        validator(_, value) {
-                            if (!value || getFieldValue('password') === value) {
-                                return Promise.resolve();
-                            }
-                            return Promise.reject(new Error('The new password that you entered do not match!'));
-                        },
-                    }),
-                ]}
-            >
-                <Input.Password />
-            </Form.Item>
+            <Row gutter={16}>
+                <Col span={12}>
+                    <Form.Item
+                        name="password"
+                        label="Password"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your password!',
+                            },
+                        ]}
+                        hasFeedback
+                    >
+                        <Input.Password />
+                    </Form.Item>
+                </Col>
+                <Col span={12}>
+                    <Form.Item
+                        name="confirm"
+                        label="Confirm Password"
+                        dependencies={['password']}
+                        hasFeedback
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please confirm your password!',
+                            },
+                            ({ getFieldValue }) => ({
+                                validator(_, value) {
+                                    if (!value || getFieldValue('password') === value) {
+                                        return Promise.resolve();
+                                    }
+                                    return Promise.reject(new Error('The new password that you entered do not match!'));
+                                },
+                            }),
+                        ]}
+                    >
+                        <Input.Password />
+                    </Form.Item>
+                </Col>
+            </Row>
 
             <Form.Item>
                 <Button type="primary" htmlType="submit" className='w-full rounded-full'>
                     Register
                 </Button>
-                <Link className=' text-center' to='/login'>
-                    <div>Already on PUCON? Log in</div>
+                <Link className='text-center' to='/login'>
+                    <div>Already on EcoEmpower? Log in</div>
                 </Link>
             </Form.Item>
         </Form>

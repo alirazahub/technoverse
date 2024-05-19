@@ -45,10 +45,7 @@ function Navbar() {
                 <div className='flex justify-start items-center mx-5'>
                     <Link to='/dashboard'>
                         <h2 className='text-2xl font-bold flex items-center'>
-                            <div className='text-gray-600'>PUC</div>
-                            <div className='bg-blue-500 text-white rounded-md p-1 flex items-center'>
-                                <LuLinkedin />
-                            </div>
+                            <div className='text-gray-600'>EcoEmpower</div>
                         </h2>
                     </Link>
                     <form onSubmit={handleSearch}>

@@ -8,9 +8,7 @@ const MainContent = ({ children }) => {
         <div className="h-[50px]">
             <Navbar />
         </div>
-        <div className='min-h-[100vh]'>
             {children}
-        </div>
         <Footer />
     </main>;
 };

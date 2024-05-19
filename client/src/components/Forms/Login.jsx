@@ -80,9 +80,9 @@ const App = () => {
                     placeholder="Password"
                 />
             </Form.Item>
-            <a className="login-form-forgot" href="">
+            <Link className="login-form-forgot" >
                 Forgot password?
-            </a>
+            </Link>
 
             <Form.Item>
                 <Button type="primary" htmlType="submit" className="login-form-button w-full rounded-full">
@@ -92,7 +92,7 @@ const App = () => {
 
                 <Link to='/register'>
                     <Button type="primary" htmlType="submit" className="login-form-button w-full rounded-full bg-white text-black border border-black hover:text-white hover:bg-blue-600 hover:border-blue-600">
-                        New to PUCON? Join now
+                        New to EcoEmpower? Join now
                     </Button>
                 </Link>
             </Form.Item>
