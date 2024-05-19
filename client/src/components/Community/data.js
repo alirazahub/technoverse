@@ -1,12 +1,13 @@
 const events = [
     {
         id: 1,
-        poster: 'https://images.unsplash.com/photo-1522202176988-66273c2fd45f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+        poster: '/poster1.jpeg',
         title: 'Community Event 1',
         description: 'This is a community event',
         tags: ['community', 'event'],
         daysLeft: 5,
         participants: 10,
+        helping: ['Kenya', 'Nigeria', 'Ghana'],
         content: [
             {
                 title: 'Event Details',
@@ -28,12 +29,13 @@ const events = [
     },
     {
         id: 2,
-        poster: 'https://images.unsplash.com/photo-1522202176988-66273c2fd45f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+        poster: '/poster2.jpeg',
         title: 'Community Event 2',
         description: 'This is a community event',
         tags: ['community', 'event'],
         daysLeft: 5,
         participants: 10,
+        helping: ['Kenya', 'Nigeria', 'Ghana'],
         content: [
             {
                 title: 'Event Details',
@@ -55,12 +57,13 @@ const events = [
     },
     {
         id: 3,
-        poster: 'https://images.unsplash.com/photo-1522202176988-66273c2fd45f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+        poster: '/poster3.jpeg',
         title: 'Community Event 3',
         description: 'This is a community event',
         tags: ['community', 'event'],
         daysLeft: 5,
         participants: 10,
+        helping: ['Kenya', 'Nigeria', 'Ghana'],
         content: [
             {
                 title: 'Event Details',
